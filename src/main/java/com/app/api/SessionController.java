@@ -1,23 +1,26 @@
 package com.app.api;
 
-import io.swagger.annotations.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import com.app.model.response.OperationResponse.ResponseStatusEnum;
+import com.app.model.session.SessionItem;
+import com.app.model.session.SessionResponse;
+import com.app.model.user.Login;
+import com.app.model.user.User;
+import com.app.repo.UserRepo;
 
-import com.app.repo.*;
-import com.app.model.*;
-import com.app.model.session.*;
-import com.app.model.response.*;
-import com.app.model.user.*;
-import static com.app.model.response.OperationResponse.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /*
 This is a dummy rest controller, for the purpose of documentation (/session) path is map to a filter

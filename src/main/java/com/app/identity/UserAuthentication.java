@@ -1,10 +1,12 @@
 package com.app.identity;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+
 public class UserAuthentication implements Authentication {
+    private static final long serialVersionUID = 9187195969621375092L;
     private final TokenUser user;
     private boolean authenticated = true;
 

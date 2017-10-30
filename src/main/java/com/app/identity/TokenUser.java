@@ -1,10 +1,11 @@
 package com.app.identity;
 
 import org.springframework.security.core.authority.AuthorityUtils;
-import com.app.model.user.Role;
+
 import com.app.model.user.User;
 
 public class TokenUser extends org.springframework.security.core.userdetails.User {
+    private static final long serialVersionUID = -7596902770543017594L;
     private User user;
 
     //For returning a normal user

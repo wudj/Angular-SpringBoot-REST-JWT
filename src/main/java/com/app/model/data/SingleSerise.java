@@ -1,10 +1,8 @@
 package com.app.model.data;
 
-import lombok.*;
-import java.util.*;
 import java.math.BigDecimal;
-import javax.persistence.*;
-import io.swagger.annotations.ApiModelProperty;
+
+import lombok.Data;
 
 @Data
 public class SingleSerise  {

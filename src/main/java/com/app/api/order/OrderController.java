@@ -1,21 +1,33 @@
 package com.app.api.order;
 
-import io.swagger.annotations.*;
-//import springfox.documentation.annotations.*;
-import org.springframework.http.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.*;
-//import static org.springframework.http.MediaType.*;
-
-import java.util.*;
 import java.math.BigDecimal;
-import com.app.api.*;
-import com.app.model.order.*;
-import com.app.repo.*;
-import static com.app.model.response.OperationResponse.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+//import static org.springframework.http.MediaType.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+//import springfox.documentation.annotations.*;
+import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.model.order.OrderDetail;
+import com.app.model.order.OrderDetailResponse;
+import com.app.model.order.OrderInfo;
+import com.app.model.order.OrderInfoResponse;
+import com.app.model.order.OrderResponse;
+import com.app.repo.OrderInfoRepo;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -24,9 +36,6 @@ public class OrderController {
 
   @Autowired private JdbcTemplate jdbcTemplate;
   @Autowired private OrderInfoRepo orderInfoRepo;
-  @Autowired private OrderRepo orderRepo;
-
-
   @ApiOperation(value = "List of orders", response = OrderResponse.class)
   @RequestMapping(value = "/orders", method = RequestMethod.GET)
   public OrderInfoResponse getOrdersByPage(

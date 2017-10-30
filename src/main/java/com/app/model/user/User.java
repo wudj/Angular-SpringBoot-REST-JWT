@@ -1,11 +1,16 @@
 package com.app.model.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import javax.persistence.*;
-import lombok.*;
-import javax.validation.constraints.*;
-import java.util.EnumSet;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class User {

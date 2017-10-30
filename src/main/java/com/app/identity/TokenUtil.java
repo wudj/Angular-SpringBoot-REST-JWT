@@ -1,14 +1,19 @@
 package com.app.identity;
 
+import java.util.Date;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import io.jsonwebtoken.*;
-import javax.servlet.http.*;
-import java.util.*;
-import java.io.IOException;
 
 import com.app.model.user.Role;
 import com.app.model.user.User;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class TokenUtil {

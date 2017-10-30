@@ -6,11 +6,14 @@
 
 package com.app.model.order;
 
-import lombok.*;
-import java.util.*;
-import java.math.*;
-import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)

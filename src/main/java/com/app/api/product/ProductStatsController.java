@@ -1,23 +1,24 @@
 package com.app.api.product;
 
-import io.swagger.annotations.*;
-//import springfox.documentation.annotations.*;
-import org.springframework.http.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.*;
-//import static org.springframework.http.MediaType.*;
-
-import java.util.*;
 import java.math.BigDecimal;
-import com.app.api.*;
-import com.app.repo.*;
-import com.app.model.order.*;
-import com.app.model.response.*;
-import com.app.model.data.*;
-import static com.app.model.response.OperationResponse.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+//import springfox.documentation.annotations.*;
+import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.model.data.SingleSerise;
+import com.app.model.response.OperationResponse.ResponseStatusEnum;
+import com.app.model.response.SingleDataSeriseResponse;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,8 +32,6 @@ public class ProductStatsController {
     public SingleDataSeriseResponse getProductStatsByQuantity() {
 
         String sql = "select product_name as name, sum(quantity) as value from order_details group by product_name ";
-        String countType = new String();
-        long count;
         SingleSerise singleSerise;
         SingleDataSeriseResponse resp = new SingleDataSeriseResponse();
         ArrayList<SingleSerise> dataItemList = new ArrayList<SingleSerise>();

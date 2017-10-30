@@ -1,10 +1,10 @@
 package com.app.model.response;
 
-import io.swagger.annotations.*;
-import org.springframework.data.domain.*;
-import lombok.*;
-import java.util.*;
-import static com.app.model.response.OperationResponse.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+
+import lombok.Getter;
+import lombok.Setter;
 
 //@Data //for getters and setters
 public class PageResponse extends OperationResponse {
@@ -16,9 +16,7 @@ public class PageResponse extends OperationResponse {
   @Getter @Setter private int totalPages;
   @Getter @Setter private long totalItems;
   @Getter @Setter private Sort sort;
-  private List items;
-
-  public void setPageStats(Page pg, boolean setDefaultMessage){
+  public void setPageStats(Page<?> pg, boolean setDefaultMessage){
     this.first             = pg.isFirst();
     this.last              = pg.isLast();
     this.currentPageNumber = pg.getNumber();

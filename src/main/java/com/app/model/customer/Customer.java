@@ -1,9 +1,10 @@
 package com.app.model.customer;
 
-import lombok.*;
-import java.util.*;
-import javax.persistence.*;
-import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
 
 @Data
 @Entity

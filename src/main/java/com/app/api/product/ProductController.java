@@ -1,32 +1,33 @@
 package com.app.api.product;
 
-import io.swagger.annotations.*;
-//import springfox.documentation.annotations.*;
-import javax.servlet.http.*;
-import org.springframework.http.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.*;
-import org.springframework.transaction.annotation.Transactional;
+import javax.servlet.http.HttpServletRequest;
 
-//import static org.springframework.http.MediaType.*;
-import org.springframework.dao.DataIntegrityViolationException;
-import java.util.*;
-import java.lang.*;
-import com.app.api.*;
-import com.app.model.product.*;
-import com.app.repo.*;
-import com.app.model.response.*;
-import static com.app.model.response.OperationResponse.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.model.product.Product;
+import com.app.model.product.ProductResponse;
+import com.app.model.response.OperationResponse;
+import com.app.model.response.OperationResponse.ResponseStatusEnum;
+import com.app.repo.ProductRepo;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(tags = {"Products"})
 public class ProductController {
 
-    @Autowired private JdbcTemplate jdbcTemplate;
     @Autowired private ProductRepo productRepo;
 
     @ApiOperation(value = "List of products", response = ProductResponse.class)

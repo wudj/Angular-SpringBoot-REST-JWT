@@ -1,23 +1,30 @@
 package com.app.api.employee;
 
-import io.swagger.annotations.*;
 //import springfox.documentation.annotations.*;
-import javax.servlet.http.*;
-import org.springframework.http.*;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 //import static org.springframework.http.MediaType.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
-import com.app.api.*;
-import com.app.model.employee.*;
-import com.app.repo.*;
-import com.app.model.response.*;
-import static com.app.model.response.OperationResponse.*;
+import com.app.model.employee.Employee;
+import com.app.model.employee.EmployeeResponse;
+import com.app.model.response.OperationResponse;
+import com.app.model.response.OperationResponse.ResponseStatusEnum;
+import com.app.repo.EmployeeRepo;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @Transactional
@@ -25,7 +32,6 @@ import static com.app.model.response.OperationResponse.*;
 @Api(tags = {"Employee"})
 public class EmployeeController {
 
-  @Autowired private JdbcTemplate jdbcTemplate;
   @Autowired private EmployeeRepo employeeRepo;
 
   @ApiOperation(value = "List of employees", response = EmployeeResponse.class)
@@ -55,7 +61,6 @@ public class EmployeeController {
             resp.setOperationMessage("Unable to add Employee - Employee allready exist ");
         }
         else{
-            Employee addedEmployee = this.employeeRepo.save(employee);
             resp.setOperationStatus(ResponseStatusEnum.SUCCESS);
             resp.setOperationMessage("Employee Added");
         }
